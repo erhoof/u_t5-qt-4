@@ -2,14 +2,7 @@
 #define SCENEENTITY_H
 
 #include <QObject>
-
-enum class SceneEntityType
-{
-    TESSERACT,
-    QRADIOBUTTON,
-    HIPPO,
-    NONE
-};
+#include "sceneentitytype.h"
 
 // Placeholder
 class QGraphicsItem;
@@ -25,16 +18,18 @@ public:
     QGraphicsItem &item();
 
     int id() const;
+    QString toString() const;
 
 signals:
 
 private:
     SceneEntityType _type;
+    QString _typeString;
     QGraphicsItem *_item;
-    union _addIn {
+    union _addInUnion {
         QWidget *_widget;
         QImage *_image;
-    };
+    } _addIn;
 
     int _id;
 };
