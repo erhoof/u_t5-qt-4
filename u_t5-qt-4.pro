@@ -16,11 +16,18 @@ DEFINES += QT_DEPRECATED_WARNINGS
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+    itemsmodel.cpp \
     main.cpp \
-    mainwindow.cpp
+    mainwindow.cpp \
+    sceneentity.cpp \
+    tesseractobject.cpp
 
 HEADERS += \
-    mainwindow.h
+    itemsmodel.h \
+    mainwindow.h \
+    sceneentity.h \
+    sceneentitytype.h \
+    tesseractobject.h
 
 FORMS += \
     mainwindow.ui

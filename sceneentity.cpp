@@ -72,7 +72,7 @@ QString SceneEntity::toString() const
                                                    QString::number(_addIn._widget->pos().x()),
                                                    QString::number(_addIn._widget->pos().y()));
     else
-        return QString("[%1] %2 (x:%3, y:%4)").arg(QString(_id),
+        return QString("[%1] %2 (x:%3, y:%4)").arg(QString::number(_id),
                                                    _typeString,
                                                    QString::number(_item->pos().x()),
                                                    QString::number(_item->pos().y()));

@@ -44,21 +44,21 @@
        </widget>
       </item>
       <item>
-       <widget class="QPushButton" name="pushButton_3">
+       <widget class="QPushButton" name="pushButton_tesseract">
         <property name="text">
          <string>2D Tesseract</string>
         </property>
        </widget>
       </item>
       <item>
-       <widget class="QPushButton" name="pushButton_2">
+       <widget class="QPushButton" name="pushButton_qRadioButton">
         <property name="text">
          <string>QRadioButton</string>
         </property>
        </widget>
       </item>
       <item>
-       <widget class="QPushButton" name="pushButton">
+       <widget class="QPushButton" name="pushButton_hippo">
         <property name="text">
          <string>Hippo</string>
         </property>
@@ -94,7 +94,7 @@
        </widget>
       </item>
       <item>
-       <widget class="QPushButton" name="pushButton_4">
+       <widget class="QPushButton" name="pushButton_removeSelected">
         <property name="text">
          <string>Remove Selected</string>
         </property>
