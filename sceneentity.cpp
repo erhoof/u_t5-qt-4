@@ -26,7 +26,7 @@ SceneEntity::SceneEntity(QObject *parent, SceneEntityType type, int id)
         break;
     case SceneEntityType::QRADIOBUTTON:
     {
-        qDebug() << "QRADIOBUTTON goes hhhZZZZZ...";
+        qDebug() << "QRADIOBUTTON goes hhhZZZZZZ...";
 
         _widgetParent = new QGraphicsRectItem(0,0,20,20);
         _widgetProxy = new QGraphicsProxyWidget(_widgetParent);
