@@ -19,12 +19,14 @@ SOURCES += \
     itemsmodel.cpp \
     main.cpp \
     mainwindow.cpp \
+    owneventfilter.cpp \
     sceneentity.cpp \
     tesseractobject.cpp
 
 HEADERS += \
     itemsmodel.h \
     mainwindow.h \
+    owneventfilter.h \
     sceneentity.h \
     sceneentitytype.h \
     tesseractobject.h

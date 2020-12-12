@@ -23,6 +23,9 @@ public:
     void removeEntity(int row);
     void addEntity(SceneEntityType type);
 
+public slots:
+    void updateList();
+
 private:
     std::vector<SceneEntity *> _sceneEntities;
     int _nextId;

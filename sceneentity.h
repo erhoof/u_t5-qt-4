@@ -9,12 +9,13 @@ class QGraphicsItem;
 class QGraphicsWidget;
 class QGraphicsProxyWidget;
 class QGraphicsRectItem;
+class ItemsModel;
 
 class SceneEntity : public QObject
 {
     Q_OBJECT
 public:
-    SceneEntity(QObject *parent = nullptr, SceneEntityType type = SceneEntityType::NONE, int id = 0);
+    SceneEntity(QObject *parent = nullptr, SceneEntityType type = SceneEntityType::NONE, int id = 0, ItemsModel *itemsModel = nullptr);
     ~SceneEntity();
 
     SceneEntityType type() const;

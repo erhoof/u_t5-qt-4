@@ -8,8 +8,10 @@
 #include <QGraphicsWidget>
 
 #include "tesseractobject.h"
+#include "owneventfilter.h"
+#include "itemsmodel.h"
 
-SceneEntity::SceneEntity(QObject *parent, SceneEntityType type, int id)
+SceneEntity::SceneEntity(QObject *parent, SceneEntityType type, int id, ItemsModel *itemsModel)
     : QObject(parent),
       _type(type),
       _id(id)
@@ -37,9 +39,12 @@ SceneEntity::SceneEntity(QObject *parent, SceneEntityType type, int id)
         _widgetProxy->setWidget(_widget);
         _widgetProxy->setFlag(QGraphicsItem::ItemIsMovable);
 
-        _typeString = "QRadioButton (untoggled)";
+        _widget->setAccessibleName("QRadioButton (untoggled)");
 
-        _widget->setProperty("title", static_cast<QVariant>(_typeString));
+        auto eventFilter = new OwnEventFilter();
+        connect(eventFilter, &OwnEventFilter::updateList, itemsModel, &ItemsModel::updateList);
+
+        _widget->installEventFilter(eventFilter);
 
         break;
     }
@@ -111,7 +116,7 @@ QString SceneEntity::toString() const
 {
     if (_type == SceneEntityType::QRADIOBUTTON)
         return QString("[%1] %2 (x:%3, y:%4)").arg(QString::number(_id),
-                                                   _typeString,
+                                                   _widget->accessibleName(),
                                                    QString::number(_widget->pos().x()),
                                                    QString::number(_widget->pos().y()));
     else
@@ -120,4 +125,3 @@ QString SceneEntity::toString() const
                                                    QString::number(_item->pos().x()),
                                                    QString::number(_item->pos().y()));
 }
-

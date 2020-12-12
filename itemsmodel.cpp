@@ -63,7 +63,7 @@ void ItemsModel::removeEntity(int row)
 
 void ItemsModel::addEntity(SceneEntityType type)
 {
-    auto scEntity = new SceneEntity(nullptr, type, _nextId);
+    auto scEntity = new SceneEntity(nullptr, type, _nextId, this);
     _sceneEntities.push_back(scEntity);
 
     if (type == SceneEntityType::QRADIOBUTTON) {
@@ -78,6 +78,15 @@ void ItemsModel::addEntity(SceneEntityType type)
 
     // Refresh ListModel
     QModelIndex start = index(static_cast<int>(_sceneEntities.size()-1), 0);
+    QModelIndex end = index(static_cast<int>(_sceneEntities.size()), 0);
+
+    emit dataChanged(start, end);
+}
+
+void ItemsModel::updateList()
+{
+    qDebug() << "here";
+    QModelIndex start = index(0, 0);
     QModelIndex end = index(static_cast<int>(_sceneEntities.size()), 0);
 
     emit dataChanged(start, end);
