@@ -6,6 +6,9 @@
 
 // Placeholder
 class QGraphicsItem;
+class QGraphicsWidget;
+class QGraphicsProxyWidget;
+class QGraphicsRectItem;
 
 class SceneEntity : public QObject
 {
@@ -15,21 +18,22 @@ public:
     ~SceneEntity();
 
     SceneEntityType type() const;
-    QGraphicsItem &item();
+    QGraphicsItem *item();
+    QWidget *widget();
+    QGraphicsProxyWidget *widgetProxy();
+    QGraphicsRectItem *widgetParent();
 
     int id() const;
     QString toString() const;
-
-signals:
 
 private:
     SceneEntityType _type;
     QString _typeString;
     QGraphicsItem *_item;
-    union _addInUnion {
-        QWidget *_widget;
-        QImage *_image;
-    } _addIn;
+    QGraphicsProxyWidget *_widgetProxy;
+    QGraphicsRectItem *_widgetParent;
+    QWidget *_widget;
+    QPixmap *_image;
 
     int _id;
 };

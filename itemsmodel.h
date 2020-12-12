@@ -6,13 +6,14 @@
 #include <sceneentitytype.h>
 
 class SceneEntity;
+class QGraphicsScene;
 
 class ItemsModel : public QAbstractListModel
 {
     Q_OBJECT
 
 public:
-    explicit ItemsModel(QObject *parent = nullptr);
+    ItemsModel(QObject *parent = nullptr, QGraphicsScene *graphicsScene = nullptr);
 
     // Basic functionality:
     int rowCount(const QModelIndex &parent = QModelIndex()) const override;
@@ -22,14 +23,10 @@ public:
     void removeEntity(int row);
     void addEntity(SceneEntityType type);
 
-signals:
-    void addEntity(SceneEntity &entity);
-    void removeEntity(SceneEntity &entity);
-
-
 private:
     std::vector<SceneEntity *> _sceneEntities;
     int _nextId;
+    QGraphicsScene *_graphicsScene;
 };
 
 #endif // ITEMSMODEL_H

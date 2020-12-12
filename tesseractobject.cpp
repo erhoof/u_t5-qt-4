@@ -12,7 +12,7 @@ QRectF TesseractObject::boundingRect() const
 {
     int thisX = this->pos().x();
     int thisY = this->pos().y();
-    return QRectF(thisX, thisY, thisX+100, thisY+100);
+    return QRectF(0, 0, thisX+100, thisY+100);
 }
 
 void TesseractObject::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
@@ -24,8 +24,8 @@ void TesseractObject::paint(QPainter *painter, const QStyleOptionGraphicsItem *o
 
     painter->setPen(pen);
 
-    int thisX = this->pos().x();
-    int thisY = this->pos().y();
+    int thisX = 0;
+    int thisY = 0;
 
     //BIG: Back Square
     painter->drawLine(QPoint(thisX+20,  thisY),    QPoint(thisX+100, thisY)); // ----u

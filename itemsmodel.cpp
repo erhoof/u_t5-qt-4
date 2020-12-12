@@ -1,11 +1,14 @@
 #include "itemsmodel.h"
 
 #include <QDebug>
+#include <QGraphicsScene>
+#include <QGraphicsProxyWidget>
 #include "sceneentity.h"
 
-ItemsModel::ItemsModel(QObject *parent)
+ItemsModel::ItemsModel(QObject *parent, QGraphicsScene *graphicsScene)
     : QAbstractListModel(parent),
-      _nextId(0)
+      _nextId(0),
+      _graphicsScene(graphicsScene)
 {
 }
 
@@ -32,7 +35,23 @@ QVariant ItemsModel::data(const QModelIndex &index, int role) const
 
 void ItemsModel::removeEntity(int row)
 {
-    delete _sceneEntities[row-1]; // TODO: Check if i need this one
+    if (_sceneEntities.empty())
+        return;
+
+    if (_sceneEntities[row]->type() == SceneEntityType::QRADIOBUTTON) {
+        _graphicsScene->removeItem(_sceneEntities[row]->widgetParent());
+
+        /*QGraphicsProxyWidget *proxy = new QGraphicsProxyWidget();
+        proxy = proxy->createProxyForChildWidget(_sceneEntities[row]->widget());
+
+        _graphicsScene->removeItem(proxy);
+
+        delete proxy;*/
+    } else {
+        _graphicsScene->removeItem(_sceneEntities[row]->item());
+    }
+
+    //delete _sceneEntities[row]; // TODO: Check if i need this one
     _sceneEntities.erase(_sceneEntities.begin() + row);
 
     // Refresh ListModel
@@ -46,6 +65,12 @@ void ItemsModel::addEntity(SceneEntityType type)
 {
     auto scEntity = new SceneEntity(nullptr, type, _nextId);
     _sceneEntities.push_back(scEntity);
+
+    if (type == SceneEntityType::QRADIOBUTTON) {
+        _graphicsScene->addItem(scEntity->widgetParent());
+    } else {
+        _graphicsScene->addItem(scEntity->item());
+    }
 
     qDebug() << _nextId;
 

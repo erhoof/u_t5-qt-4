@@ -14,7 +14,7 @@ MainWindow::MainWindow(QWidget *parent)
     _graphicsScene = new QGraphicsScene();
     ui->graphicsView->setScene(_graphicsScene);
 
-    _itemsModel = new ItemsModel();
+    _itemsModel = new ItemsModel(nullptr, _graphicsScene);
     ui->listView->setModel(_itemsModel);
     ui->listView->show(); // TODO: check if i need this one
 }
